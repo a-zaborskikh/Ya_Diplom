@@ -10,10 +10,10 @@ def post_new_order(order_body):
 
 
 def get_order_track():
-    post_new_order(data.order_body)
     track = post_new_order(data.order_body).json()["track"]
     return track
 
 
-def receive_order_by_track():
-    return requests.get(configuration.URL_SERVICE + '?t=' + configuration.GET_ORDER)
+def receive_order_by_track(t):
+    return requests.get(configuration.URL_SERVICE + configuration.GET_ORDER,
+                        params={"t": t})
